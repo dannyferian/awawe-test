@@ -15,7 +15,7 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
-const brokerURL = ""
+const brokerURL = "http://broker-ingress.knative-eventing.svc.cluster.local/event-example/default"
 
 var (
 	CeId          = flag.String("Ce-Id", uuid.NewString(), "ce-id")
@@ -84,7 +84,7 @@ func main() {
 
 }
 
-func getParsedRequestBody(req *seedRequest) io.Reader {
+func getParsedRequestBody(req *requestBody) io.Reader {
 	reqData, _ := json.Marshal(req)
 	return bytes.NewBuffer(reqData)
 }
