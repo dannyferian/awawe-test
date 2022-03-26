@@ -18,7 +18,6 @@ import (
 const brokerURL = "http://broker-ingress.knative-eventing.svc.cluster.local/event-example/default"
 
 var (
-	CeId          = flag.String("Ce-Id", uuid.NewString(), "ce-id")
 	CeSpecversion = flag.String("Ce-Specversion", "1.0", "ce-specversion")
 	ContentType   = flag.String("Content-Type", "application/json", "content-type")
 )
@@ -57,7 +56,7 @@ func main() {
 		}
 
 		headers := map[string]string{
-			"Ce-Id":          *CeId,
+			"Ce-Id":          uuid.NewString(),
 			"Ce-Specversion": *CeSpecversion,
 			"Ce-Type":        c.Request().Header.Get("Ce-Type"),
 			"Ce-Source":      c.Request().Header.Get("Ce-Source"),
